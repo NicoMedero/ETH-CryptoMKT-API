@@ -30,5 +30,4 @@ public class Ethars {
     public void setData(List<Datum> data) {
         this.data = data;
     }
-
 }

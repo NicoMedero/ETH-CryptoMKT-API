@@ -47,7 +47,7 @@ public class Datum {
     }
 
     public String getBid() {
-        return bid;
+        return this.bid;
     }
 
     public void setBid(String bid) {
@@ -79,7 +79,7 @@ public class Datum {
     }
 
     public String getAsk() {
-        return ask;
+        return this.ask;
     }
 
     public void setAsk(String ask) {
