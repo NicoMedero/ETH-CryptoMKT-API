@@ -2,11 +2,11 @@ package nicolasmederoc.ethcyptomkt;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,17 +28,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity
         implements Callback<Ethars>{
 
-    public TextView compra;
-    public TextView venta,ethMes,pesosMes,reportedH,currentH,averageH,workersN;
-    public String a="";
-    public Boolean err=false;
-    public Datum datos = new Datum();
-    public ProgressBar progresoCompra;
-    public ProgressBar progresoVenta;
-    public Comunicacion_Pool comunicacion_pool = new Comunicacion_Pool();
+    private TextView compra;
+    private TextView venta,ethMes,pesosMes,reportedH,currentH,averageH,workersN;
+    private Button recargar;
+    private Datum datos = new Datum();
+    private ProgressBar progresoCompra;
+    private ProgressBar progresoVenta;
+    private Comunicacion_Pool comunicacion_pool = new Comunicacion_Pool();
 
-    private final String baseUrl = "https://api.cryptomkt.com/";
-
+    private static final String baseUrl = "https://api.cryptomkt.com/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,15 +66,24 @@ public class MainActivity extends AppCompatActivity
         progresoVenta.setVisibility(View.GONE);
         progresoCompra.setVisibility(View.GONE);
 
-        err = false;
-    }
+        recargar = findViewById(R.id.recargar);
+        recargar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                comunicar();
+            }
+        });
 
-    public void recargar (View view) {
-        new HiloComunicar().execute();
+        comunicar();
     }
 
     /** Comunicacion con la API */
-    public void comunicar(){
+    private void comunicar(){
+        progresoCompra.setVisibility(View.VISIBLE);
+        progresoVenta.setVisibility(View.VISIBLE);
+        compra.setText("");
+        venta.setText("");
+
         Gson gson = new GsonBuilder()
                         .setLenient()
                         .create();
@@ -97,20 +104,34 @@ public class MainActivity extends AppCompatActivity
     public void onResponse(Call<Ethars> call, Response<Ethars> response) {
         Ethars mEthars;
         if(response.isSuccessful()){
-            err = false;
             mEthars = response.body();
             datos = mEthars.getData().get(0);
             Log.d("comunicar"," Se pudo comunicar"+datos.getBid());
+
+            progresoCompra.setVisibility(View.GONE);
+            progresoVenta.setVisibility(View.GONE);
+            compra.setText(datos.getAsk());
+            venta.setText(datos.getBid());
+            enviarInfo();
+
         } else {
+            progresoCompra.setVisibility(View.GONE);
+            progresoVenta.setVisibility(View.GONE);
+            compra.setText("-");
+            venta.setText("-");
             System.out.println(response.errorBody());
         }
     }
 
     @Override  //Acá van las fallas.
     public void onFailure(Call<Ethars> call, Throwable t) {
+        progresoCompra.setVisibility(View.GONE);
+        progresoVenta.setVisibility(View.GONE);
+        compra.setText("-");
+        venta.setText("-");
+
         Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
         Log.d("comunicar"," NO Se pudo comunicar"+datos.getBid());
-        err = true;
     }
 
     public void enviarInfo(){
@@ -121,45 +142,8 @@ public class MainActivity extends AppCompatActivity
                 reportedH,
                 currentH,
                 averageH,
-                workersN);
-    }
-
-    /**Hilo para recargar, porque es una tarea Asíncrona.*/
-    class HiloComunicar extends AsyncTask<Boolean,Boolean,Void>{
-
-        @Override
-        protected Void doInBackground(Boolean... booleans) {
-            try{
-                comunicar();
-                Thread.sleep(1000);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        protected void onPreExecute(){
-            progresoCompra.setVisibility(View.VISIBLE);
-            progresoVenta.setVisibility(View.VISIBLE);
-            compra.setText("");
-            venta.setText("");
-        }
-
-        protected void onPostExecute(Void v) {
-            if (!err) {
-                progresoCompra.setVisibility(View.GONE);
-                progresoVenta.setVisibility(View.GONE);
-                compra.setText(datos.getAsk());
-                venta.setText(datos.getBid());
-                enviarInfo();
-            } else {
-                progresoCompra.setVisibility(View.GONE);
-                progresoVenta.setVisibility(View.GONE);
-                compra.setText("-");
-                venta.setText("-");
-                //this.cancel(true);
-            }
-        }
+                workersN,
+                getApplicationContext());
     }
 
     /**Acción del botón que te lleva a la página de CryptoMKT*/
