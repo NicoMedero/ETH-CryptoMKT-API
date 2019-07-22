@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity
     private Button recargar;
     private Datum datos = new Datum();
     private ProgressBar progresoCompra;
-    private ProgressBar progresoVenta;
     private Comunicacion_Pool comunicacion_pool = new Comunicacion_Pool();
 
     private static final String baseUrl = "https://api.cryptomkt.com/";
@@ -41,11 +40,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.test_activity);
 
         compra = findViewById(R.id.compra);
             compra.setText("");
-        venta = findViewById(R.id.textView4);
+        venta = findViewById(R.id.venta);
             venta.setText("");
         ethMes = findViewById(R.id.ethmes);
             ethMes.setText("");
@@ -61,10 +60,6 @@ public class MainActivity extends AppCompatActivity
             workersN.setText("");
 
         progresoCompra = findViewById(R.id.progresoCompra);
-        progresoVenta = findViewById(R.id.progresoVenta);
-
-        progresoVenta.setVisibility(View.GONE);
-        progresoCompra.setVisibility(View.GONE);
 
         recargar = findViewById(R.id.recargar);
         recargar.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +75,6 @@ public class MainActivity extends AppCompatActivity
     /** Comunicacion con la API */
     private void comunicar(){
         progresoCompra.setVisibility(View.VISIBLE);
-        progresoVenta.setVisibility(View.VISIBLE);
         compra.setText("");
         venta.setText("");
 
@@ -109,14 +103,12 @@ public class MainActivity extends AppCompatActivity
             Log.d("comunicar"," Se pudo comunicar"+datos.getBid());
 
             progresoCompra.setVisibility(View.GONE);
-            progresoVenta.setVisibility(View.GONE);
             compra.setText(datos.getAsk());
             venta.setText(datos.getBid());
             enviarInfo();
 
         } else {
             progresoCompra.setVisibility(View.GONE);
-            progresoVenta.setVisibility(View.GONE);
             compra.setText("-");
             venta.setText("-");
             System.out.println(response.errorBody());
@@ -126,7 +118,6 @@ public class MainActivity extends AppCompatActivity
     @Override  //Acá van las fallas.
     public void onFailure(Call<Ethars> call, Throwable t) {
         progresoCompra.setVisibility(View.GONE);
-        progresoVenta.setVisibility(View.GONE);
         compra.setText("-");
         venta.setText("-");
 

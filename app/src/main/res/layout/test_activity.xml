@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txt_compra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Compra: "
+        android:textSize="@dimen/txt_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_venta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Venta: "
+        android:textSize="@dimen/txt_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_compra" />
+
+    <TextView
+        android:id="@+id/txt_ethmes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="ETH/Mes: "
+        android:textSize="@dimen/txt_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_venta" />
+
+    <TextView
+        android:id="@+id/txt_pesosmes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="$/Mes: "
+        android:textSize="@dimen/txt_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_ethmes" />
+
+    <TextView
+        android:id="@+id/txt_workers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Workers: "
+        android:textSize="@dimen/txt_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_pesosmes" />
+
+    <TextView
+        android:id="@+id/txt_hashrates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Hashrates: "
+        android:textSize="@dimen/txt_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_workers" />
+
+    <TextView
+        android:id="@+id/compra"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="80dp"
+        android:text="valor de compra"
+        android:textSize="@dimen/txt_size"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txt_compra"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/venta"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="80dp"
+        android:text="valor de venta"
+        android:textSize="@dimen/txt_size"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txt_venta"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/ethmes"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="80dp"
+        android:text="valor de eth mes"
+        android:textSize="@dimen/txt_size"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txt_ethmes"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/pesosmes"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="80dp"
+        android:text="valor de pesos mes"
+        android:textSize="@dimen/txt_size"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txt_pesosmes"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/workers"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="80dp"
+        android:text="valor de workers"
+        android:textSize="@dimen/txt_size"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txt_workers"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/reported"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="80dp"
+        android:text="valor de reported"
+        android:textSize="@dimen/txt_size"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txt_hashrates"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/current"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:text="valor de current"
+        android:textSize="@dimen/txt_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reported"/>
+
+    <TextView
+        android:id="@+id/average"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:text="valor de current"
+        android:textSize="@dimen/txt_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/current"/>
+
+    <ProgressBar
+        android:id="@+id/progresoCompra"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/average"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/recargar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Recargar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progresoCompra" />
+
+    <Button
+        android:id="@+id/cryptoMKT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="CryptoMKT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recargar" />
+
+</android.support.constraint.ConstraintLayout>
