@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class PoolData {
     @SerializedName("time")
     @Expose
-    private String time;
+    String time = "";
 
     @SerializedName("lastSeen")
     @Expose
@@ -50,7 +50,7 @@ public class PoolData {
 
     @SerializedName("coinsPerMin")
     @Expose
-    private float coinsPerMin;
+    float coinsPerMin = 0;
 
     @SerializedName("usdPerMin")
     @Expose

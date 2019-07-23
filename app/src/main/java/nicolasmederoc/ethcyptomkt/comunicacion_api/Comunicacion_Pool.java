@@ -68,16 +68,16 @@ public class Comunicacion_Pool implements Callback<Pool> {
             pool = response.body();
             PoolData poolData = pool.getData();
 
-            ethMes.setText(String.valueOf(poolData.getCoinsPerMonth()));
-            pesosMes.setText(
-                    String.valueOf(
-                            poolData.getCoinsPerMonth()*valorVenta
-                    )
-            );
-            reportedH.setText(String.valueOf(poolData.getReported()));
-            currentH.setText(String.valueOf(poolData.getCurrentHashrate()));
-            averageH.setText(String.valueOf(poolData.getAverage()));
-            workersN.setText(poolData.getWorkers());
+                ethMes.setText(String.valueOf(poolData.getCoinsPerMonth()));
+                pesosMes.setText(
+                        String.valueOf(
+                                poolData.getCoinsPerMonth() * valorVenta
+                        )
+                );
+                reportedH.setText(String.valueOf(poolData.getReported()));
+                currentH.setText(String.valueOf(poolData.getCurrentHashrate()));
+                averageH.setText(String.valueOf(poolData.getAverage()));
+                workersN.setText(poolData.getWorkers());
 
         } else {
             Log.d("Comunicacion_Pool", " Unsuccessful");

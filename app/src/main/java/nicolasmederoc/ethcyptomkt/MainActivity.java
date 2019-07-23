@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +32,8 @@ public class MainActivity extends AppCompatActivity
         implements Callback<Ethars>{
 
     private TextView compra;
-    private TextView venta,ethMes,pesosMes,reportedH,currentH,averageH,workersN;
+    private TextView venta,ethMes,pesosMes,reportedH,currentH,averageH,workersN,ethEnPesos;
+    private EditText ethAPesos;
     private Button recargar;
     private Datum datos = new Datum();
     private ProgressBar progresoCompra;
@@ -58,6 +62,34 @@ public class MainActivity extends AppCompatActivity
             averageH.setText("");
         workersN = findViewById(R.id.workers);
             workersN.setText("");
+        ethAPesos = findViewById(R.id.eth_a_calcular);
+        ethEnPesos = findViewById(R.id.eth_a_pesos);
+            ethEnPesos.setText("");
+
+            ethAPesos.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    if (!datos.getBid().isEmpty()) {
+                        float bid = Float.valueOf(datos.getBid());
+                        if (!ethAPesos.getText().toString().isEmpty()) {
+                            float input = Float.valueOf(ethAPesos.getText().toString());
+                            ethEnPesos.setText(String.valueOf(bid * input));
+                        } else {
+                            ethEnPesos.setText("0");
+                        }
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            });
 
         progresoCompra = findViewById(R.id.progresoCompra);
 
